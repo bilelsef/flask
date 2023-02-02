@@ -13,7 +13,7 @@ database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filenam
 app = Flask(__name__)
 CORS(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] =os.getenv("DATABASE_URI")#database_path
+app.config["SQLALCHEMY_DATABASE_URI"] =database_path
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "dsqhjvfqsjnchbrehvfdsfsd"
 db = SQLAlchemy(app)
