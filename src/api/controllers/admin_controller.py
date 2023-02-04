@@ -4,7 +4,7 @@ import datetime
 
 from flask import jsonify, make_response, request
 
-from src.api import  db
+from src.api import  db,vistorsNumber
 from bs4 import BeautifulSoup
 import requests
 from src.api.auth.auth import requires_auth
@@ -112,7 +112,7 @@ def createAnnonceFromMap(map):
 def get_website_stats(user):
     if (user.role == "1"):
         return make_response(jsonify({"status": "failed", "data": None, "message": "not admin"}), 401)
-    return make_response(jsonify({"data":{"annonces_count":len(Annonce.query.all()),"messages_count":len(Message.query.all()),"users_count":len(User.query.all())},"message":None,"status":"success",}),200)
+    return make_response(jsonify({"data":{"annonces_count":len(Annonce.query.all()),"messages_count":len(Message.query.all()),"users_count":len(User.query.all()),"visitors_count":vistorsNumber},"message":None,"status":"success",}),200)
 
 def get_admin_annonces(user):
     if (user.role == "1"):
