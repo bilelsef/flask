@@ -29,8 +29,7 @@ def login():
         else:
             id = user.id
             token = jwt.encode({"userId":id},os.getenv("TOKEN_SECRET"))
-            if user.address is None or user.phone_number is None:
-                return make_response(jsonify({"status": "success", "data": {"token":token,"isValid":False}, "message": None}),200)
+
             return make_response(jsonify({"status":"success","data":{"token":token,"isValid":True},"message":None}),200)
     else:
         return make_response(jsonify({"status":"failed","data":None,"message":"missing data in body"}),400)
@@ -39,10 +38,12 @@ def fill_data(user):
     body = request.get_json()
     print(body)
     if "address" in body and "phoneNumber" in body:
-        contactInfo = ContactInfo.query.filter_by(id=user.contact_info_id).next()
+        contactInfo = ContactInfo.query.filter_by(id=user.contact_info_id).first()
         contactInfo.phone_number = body["phoneNumber"]
         contactInfo.address = body["address"]
         contactInfo.add()
+        user.contact_info_id = contactInfo.id
+
         return make_response(jsonify({"status":"success","data":None,"message":None}),200)
     else:
         return make_response(jsonify({"status":"failed","data":None,"message":"missing data in body"}),400)

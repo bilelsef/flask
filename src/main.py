@@ -1,11 +1,10 @@
-from src.api import app
 import os
 
-
-print("hi")
+from src.api import app
+import jwt
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=os.getenv("PORT"))
+    app.run(debug=True,host="0.0.0.0")
 
 
 
