@@ -10,7 +10,7 @@ from src.api.models import Annonce, Type, Image
 def getAllAnnonces():
     pageNumber = request.args.get("page", 1, int)
     if pageNumber==1:
-        vistorsNumber++
+        vistorsNumber=vistorsNumber+1
     try:
         annonces = Annonce.query.paginate(page=pageNumber, per_page=12)
     except:
