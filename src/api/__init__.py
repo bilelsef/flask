@@ -12,7 +12,7 @@ project_dir = os.path.dirname(os.path.abspath(__file__))
 database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
 app = APIFlask(__name__, docs_ui='swagger-ui',docs_path='/docs')
 
-
+vistorsNumber = 0
 CORS(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] =database_path
