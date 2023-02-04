@@ -16,7 +16,7 @@ def requires_auth(f):
         token = request.headers['Authorization'].split(" ")[1]
         try:
             payload = jwt.decode(token,
-                                 os.getenv("TOKEN_SECRET"), algorithms='HS256')
+                                 "28472B4B62506553", algorithms='HS256')
             print(payload)
             user = User.query.filter_by(id=payload["userId"]).first()
             if user is None:
