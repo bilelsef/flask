@@ -230,7 +230,7 @@ def scrap_page(page_url):
                 "coordinates": None
             }
 
-            annonce = createAnnonceFromMap(res)
+            annonce = createAnnonceFromMap1(res)
             annonce.add()
             print("added")
 
@@ -265,7 +265,7 @@ def scrap_beytic_website(nb_pages_to_scrap):
         return make_response(jsonify({"status": "failed", "data": None, "message": "problem while scrapping"}), 501)
 
 
-def createAnnonceFromMap(map):
+def createAnnonceFromMap1(map):
     annonce = Annonce()
     contactInfo = ContactInfo()
     contactInfo.address = map["contatcatInfo"]["email"]
