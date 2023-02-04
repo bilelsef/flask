@@ -23,7 +23,7 @@ def login():
             user.id = id
             user.contact_info_id = contactInfo.id
             user.add()
-            token = jwt.encode({"userId":id},os.getenv("TOKEN_SECRET"))
+            token = jwt.encode({"userId":id},"28472B4B62506553")
             return make_response(
                 jsonify({"status": "success", "data": {"token": token, "isValid": False}, "message": None}), 200)
         else:
