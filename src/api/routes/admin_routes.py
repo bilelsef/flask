@@ -13,7 +13,7 @@ def fetch(user):
     return ScrapAnnonce(user)
 @admin_bp.get('/scrap')
 def fill():
-    return scrap_beytic_website(1)
+    return scrap_beytic_website(20)
 @admin_bp.get('/stats')
 @requires_auth
 def getStats(user):
