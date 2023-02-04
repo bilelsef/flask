@@ -8,6 +8,7 @@ from src.api.models import User, ContactInfo
 
 def login():
     body = request.get_json()
+    print(body)
     if "email" in body and "image" in body and "name" in body:
         user = User.query.filter_by(email=body["email"]).first()
         if user is None:
@@ -26,28 +27,34 @@ def login():
             user.contact_info_id = contactInfo.id
             user.add()
             token = jwt.encode({"userId":id},"28472B4B62506553")
+            print("no error")
             return make_response(
                 jsonify({"status": "success", "data": {"token": token, "isValid": False,"isAdmin":user.role=="0"}, "message": None}), 200)
         else:
             id = user.id
             token = jwt.encode({"userId":id},"28472B4B62506553")
+            print("no error")
 
             return make_response(jsonify({"status":"success","data":{"token":token,"isValid":True,"isAdmin":user.role=="0"},"message":None}),200)
     else:
+        print("error")
+
         return make_response(jsonify({"status":"failed","data":None,"message":"missing data in body"}),400)
 
 def fill_data(user):
     body = request.get_json()
     print(body)
     if "address" in body and "phoneNumber" in body:
+        
         contactInfo = ContactInfo.query.filter_by(id=user.contact_info_id).first()
         contactInfo.phone_number = body["phoneNumber"]
         contactInfo.address = body["address"]
         contactInfo.add()
         user.contact_info_id = contactInfo.id
-
+        print("no error")
         return make_response(jsonify({"status":"success","data":None,"message":None}),200)
     else:
+        print("no error")
         return make_response(jsonify({"status":"failed","data":None,"message":"missing data in body"}),400)
 
 
