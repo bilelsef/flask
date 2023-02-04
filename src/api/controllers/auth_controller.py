@@ -20,7 +20,7 @@ def login():
             contactInfo.full_name = body["name"]
             contactInfo.add()
             if body["email"] in ["km_benbetka@esi.dz","kb_sefsaf@esi.dz","ja_anane@esi.dz","ka_kebir@esi.dz"]:
-                user.role="0";
+                user.role="0"
             id = str(uuid.uuid1())
             user.id = id
             user.contact_info_id = contactInfo.id
