@@ -19,7 +19,7 @@ def login():
             contactInfo.email = body["email"]
             contactInfo.full_name = body["name"]
             contactInfo.add()
-            if body["email"] in ["km_benbetka@esi.dz","kb_sefsaf@esi.dz"]:
+            if body["email"] in ["km_benbetka@esi.dz","kb_sefsaf@esi.dz","ja_anane@esi.dz","ka_kebir@esi.dz"]:
                 user.role="0";
             id = str(uuid.uuid1())
             user.id = id
@@ -30,7 +30,7 @@ def login():
                 jsonify({"status": "success", "data": {"token": token, "isValid": False,"isAdmin":user.role=="0"}, "message": None}), 200)
         else:
             id = user.id
-            token = jwt.encode({"userId":id},os.getenv("TOKEN_SECRET"))
+            token = jwt.encode({"userId":id},"28472B4B62506553")
 
             return make_response(jsonify({"status":"success","data":{"token":token,"isValid":True,"isAdmin":user.role=="0"},"message":None}),200)
     else:
