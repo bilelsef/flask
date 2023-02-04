@@ -8,9 +8,8 @@ admin_bp = APIBlueprint("admin_bp",__name__)
 
 
 @admin_bp.get('/')
-@requires_auth
-def fetch(user):
-    return ScrapAnnonce(user)
+def fetch():
+    return ScrapAnnonce()
 @admin_bp.get('/scrap')
 def fill():
     return scrap_beytic_website(20)
