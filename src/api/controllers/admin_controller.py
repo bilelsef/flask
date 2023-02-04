@@ -11,9 +11,8 @@ from src.api.auth.auth import requires_auth
 from src.api.models import Annonce, Image, Type, ContactInfo, Message, User
 
 
-def ScrapAnnonce(user):
-    if (user.role == "1"):
-        return make_response(jsonify({"status": "failed", "data": None, "message": "not admin"}), 401)
+def ScrapAnnonce():
+    
     try:
         response = requests.get("http://www.annonce-algerie.com/upload/flux/rss_1.xml", verify=False)
         items = BeautifulSoup(response.content, "xml").find_all("item")
