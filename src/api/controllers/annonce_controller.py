@@ -3,14 +3,12 @@ import uuid
 import datetime
 
 from flask import request, make_response, jsonify
-from src.api import db,vistorsNumber
+from src.api import db
 from src.api.models import Annonce, Type, Image
 
 
 def getAllAnnonces():
-    pageNumber = request.args.get("page", 1, int)
-    if pageNumber==1:
-        vistorsNumber=vistorsNumber+1
+    pageNumber = request.args.get("page", 1, int)        
     try:
         annonces = Annonce.query.paginate(page=pageNumber, per_page=12)
     except:
