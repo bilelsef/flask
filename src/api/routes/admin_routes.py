@@ -18,6 +18,5 @@ def fill():
 def getStats(user):
     return get_website_stats(user)
 @admin_bp.get('/annonces')
-@requires_auth
-def getAdminAnnonces(user):
-    return get_admin_annonces(user)
+def getAdminAnnonces():
+    return get_admin_annonces()
