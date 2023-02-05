@@ -113,9 +113,8 @@ def get_website_stats(user):
         return make_response(jsonify({"status": "failed", "data": None, "message": "not admin"}), 401)
     return make_response(jsonify({"data":{"annonces_count":len(Annonce.query.all()),"messages_count":len(Message.query.all()),"users_count":len(User.query.all()),"visitors_count":vistorsNumber},"message":None,"status":"success",}),200)
 
-def get_admin_annonces(user):
-    if (user.role == "1"):
-        return make_response(jsonify({"status": "failed", "data": None, "message": "not admin"}), 401)
+def get_admin_annonces():
+    
     pageNumber = request.args.get("page", 1, int)
 
     annonces = Annonce.query.filter_by(user_id=None).paginate(per_page=12,page=pageNumber)
