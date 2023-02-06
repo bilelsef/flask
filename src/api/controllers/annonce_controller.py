@@ -35,6 +35,7 @@ def AddAnnonce(user):
         annonce.price = body["price"]
         annonce.description = body["description"]
         annonce.wilaya = body["wilaya"]
+        annonce.address = body["address"]
         annonce.commune = body["commune"]
         annonce.type_id = int(body["typeId"])
         annonce.surface = body["surface"]
